@@ -190,7 +190,8 @@ public void startGame(int firstPlay) {
         gameDone = this.playerTurn();
            // gameDone = this.computerTurn();
         if (gameDone) break;
-        gameDone = this.computerTurn();
+       gameDone = this.computerTurn();
+          //  gameDone = this.playerTurn();
         }while(gameDone==false);
     } else {
         this.printBoard();
