@@ -27,8 +27,7 @@ public class Lucas {
      * @param n n integer which n>1, prints out all lucas numbers up to n
      */
     public void testLucas(int n) {
-        if (n <= 1) {
-        } else {
+        if (!(n <= 1)) {
             double startTime = System.nanoTime();
             double val = this.lucas(n);
             double endTime = System.nanoTime();
