@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        // question 1 
+        // question 1
         Scanner scan = new Scanner(System.in);
         System.out.println("Type in a string below and the computer will check if it is a palindrome.");
         String input = scan.nextLine();
@@ -16,7 +16,14 @@ public class Main {
         System.out.println( hw3.fastinversioncount(array));
 
         // question 3
-        hw3.printLinkedList(hw3.BRGC(3));
+        hw3.printLinkedList(graycodesarefun.BRGC(4));
+        String[] names = {"Brandon", "Dylan", "Chris", "Bob", "Alice"};
+        graycodesarefun q3 = new graycodesarefun(names);
+        System.out.println();
+        System.out.println(q3.whoMoves("00011", "00001"));
+        System.out.println(q3.whoInPicture("00011"));
+        System.out.println(q3.whoInPicture("10001"));
 
+        q3.run();
     }
 }

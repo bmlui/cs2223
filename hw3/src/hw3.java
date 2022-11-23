@@ -97,39 +97,20 @@ public class hw3 {
 
 
     }
-    static void printArray(int arr[]) {
+   public static void printArray(int arr[]) {
         int n = arr.length;
         for (int i = 0; i < n; ++i)
             System.out.print(arr[i] + " ");
         System.out.println();
     }
 
-    static void printLinkedList(LinkedList<String> arr) {
+    public static void printLinkedList(LinkedList<String> arr) {
         for(String s: arr) {
             System.out.print(s +' ');
         }
     }
-    public static LinkedList<String> BRGC(int n){
-        LinkedList<String> list = new LinkedList<String>();
-        // base case
-        if (n == 1) {
-            list.add("0");
-            list.add("1");
-        } else {
-            LinkedList<String> L1 = BRGC(n - 1);
-            LinkedList<String> L2 = new LinkedList<>(L1);
-            Collections.reverse(L2);
-            for (int i = 0; i < L1.size(); i++) {
-                L1.set(i, "0" + L1.get(i));
-            }
-            for (int j = 0; j < L2.size(); j++) {
-                L2.set(j, "1" + L2.get(j));
-            }
-            list.addAll(L1);
-            list.addAll(L2);
-        }
-        return list;
-    }
+
+
 
 
 
