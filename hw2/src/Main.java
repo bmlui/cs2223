@@ -52,9 +52,5 @@ public class Main {
             ms.findGreatestCombo(numbers); // bulletpoint 4
         }
 
-
-
-
-
     }
 }
