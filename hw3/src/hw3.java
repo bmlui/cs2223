@@ -104,13 +104,6 @@ public class hw3 {
         System.out.println();
     }
 
-    public static void printLinkedList(LinkedList<String> arr) {
-        for(String s: arr) {
-            System.out.print(s +' ');
-        }
-    }
-
-
 
 
 

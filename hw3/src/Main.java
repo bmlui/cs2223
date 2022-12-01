@@ -17,7 +17,7 @@ public class Main {
 
         // question 3
         hw3.printLinkedList(graycodesarefun.BRGC(4));
-        String[] names = {"Brandon", "Dylan", "Chris", "Bob", "Alice"};
+        String[] names = {"Eve", "Dylan", "Chris", "Bob", "Alice"};
         graycodesarefun q3 = new graycodesarefun(names);
         System.out.println();
         System.out.println(q3.whoMoves("00011", "00001"));
@@ -26,4 +26,6 @@ public class Main {
 
         q3.run();
     }
+
+
 }
