@@ -63,9 +63,9 @@ public class Gaussian {
             augmentedMatrix[pivotrow] = temparr;
 
             // pivot
-            for (int j = 0; j < n; j++) {
+           for (int j = 0; j < n; j++) {
                 double temp = augmentedMatrix[j][i] / augmentedMatrix[i][i];
-                for (int k = 0; k < n; k++) {
+                for (int k = 0; k < n+1; k++) {
                     if (j != i && k != i) {
                         augmentedMatrix[j][k] -= temp * augmentedMatrix[i][k];
                     }
@@ -73,17 +73,16 @@ public class Gaussian {
             }
             for (int j = 0; j < n; j++) {
                 if (j != i) {
-                    augmentedMatrix[j][i] = 0;
+                    augmentedMatrix[j][i] = 0.0;
                 }
             }
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < n +1; j++) {
                 if (j != i) {
                     augmentedMatrix[i][j] /= augmentedMatrix[i][i];
                 }
-                augmentedMatrix[i][i] = 1;
             }
-        }
-        return augmentedMatrix;
-    }
+            augmentedMatrix[i][i] = 1.0;
 
+    }
+        return augmentedMatrix;}
 }

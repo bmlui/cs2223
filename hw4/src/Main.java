@@ -16,12 +16,7 @@ public class Main {
 
 
         //Question 3
-        Gaussian.printMatrix(Gaussian.BetterForwardElimination(new double[][]{{1, 1, 1}, {1, 1, 2}, {1, 2, 3}}, new double[]{6, 9, 14}));
-        System.out.println("");
-        Gaussian.printMatrix(Gaussian.BetterForwardElimination(new double[][]{{2, -1, 1}, {4, 1, -1}, {1, 1, 1}}, new double[]{1, 5, 0}));
-        System.out.println("");
-
-        double[][] one = {
+        double[][] questionmatrix = {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -34,10 +29,13 @@ public class Main {
                 {0, 0, 0, 3, -2, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 1, 0, 0, 0, 0, 1, -1, 0, 0},
                 {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1}};
-        double[] two = {364, 4, 16, 36, 64, 100, 79, 61, 0, 0, 0, -42};
-        Gaussian.printMatrix(Gaussian.BetterForwardElimination(one, two));
+        double[] lastcolumn = {364, 4, 16, 36, 64, 100, 79, 61, 0, 0, 0, -42};
         System.out.println("");
-        Gaussian.printMatrix(Gaussian.GaussJordanEliminiation(one, two));
+        Gaussian.printMatrix(Gaussian.GaussJordanEliminiation(questionmatrix, lastcolumn));
+        System.out.println("");
+
+        //Question 4
+
 
 
     }
