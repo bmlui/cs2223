@@ -6,14 +6,15 @@ public class Main {
         //x1 + x2 + 2x3 = 9
         //x1 + 2x2 + 3x3 = 14
         // The reason is that the method will try to divide by zero, which is not possible.
-        // The BetterForwardElimination solves this problem by checking if the pivot is zero.
+        // The BetterForwardElimination solves this problem by using partial pivoting in order to avoid this scenario from arising.
 
         //Question 2
         // The BetterForwardElimination method will not work for the following matrix:
         // x1 + x2 + x3 = 6
         //x1 + x2 + 2x3 = 9
         //2x1 + 2x2 + 3x3 = 15
-
+        // The reason why BetterForwardElimination will not work is that the method will become equivalent after mutiple passes, not
+        // taking into account no solutions or infinite solutions. The system will fail for a zero pivot and will not be able to handle a column of zeros.
 
         //Question 3
         double[][] question3matrix = {
@@ -45,8 +46,8 @@ public class Main {
                 {79,  5, 14, 23, 78, 37, 40, 74},
                 {35, 89, 52, 66, 82, 20, 95, 21}
         };
-        q4.findArkenstonePath(question4matrix);
-        
+    q4.findArkenstonePath(question4matrix);
+
     }
 
 
