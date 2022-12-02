@@ -16,7 +16,7 @@ public class Main {
 
 
         //Question 3
-        double[][] questionmatrix = {
+        double[][] question3matrix = {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -29,15 +29,24 @@ public class Main {
                 {0, 0, 0, 3, -2, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 1, 0, 0, 0, 0, 1, -1, 0, 0},
                 {1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1}};
-        double[] lastcolumn = {364, 4, 16, 36, 64, 100, 79, 61, 0, 0, 0, -42};
+        double[] q3lastcolumn = {364, 4, 16, 36, 64, 100, 79, 61, 0, 0, 0, -42};
         System.out.println("");
-        Gaussian.printMatrix(Gaussian.GaussJordanEliminiation(questionmatrix, lastcolumn));
+        Gaussian.printMatrix(Gaussian.GaussJordanEliminiation(question3matrix, q3lastcolumn));
         System.out.println("");
 
         //Question 4
-
-
-
+        double[][] question4matrix = {
+                {96, 33, 44, 98, 75, 68, 99, 84},
+                {10, 41,  1, 86, 46, 24, 53, 93},
+                {83, 97, 94, 27, 65, 51, 30,  7},
+                {56, 70, 47, 64, 22, 88, 67, 12},
+                {91, 11, 77, 48, 13, 71, 92, 15},
+                {32, 59, 17, 25, 31,  4, 16, 63},
+                {79,  5, 14, 23, 78, 37, 40, 74},
+                {35, 89, 52, 66, 82, 20, 95, 21}
+        };
+        q4.findArkenstonePath(question4matrix);
+        
     }
 
 
