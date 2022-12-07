@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class Hash {
 private int C;
 private int m;
@@ -50,6 +52,30 @@ private int m;
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
+        }
+    }
+
+    public static void fileHash(String fileName, HashTableClosedHashing hashTable) {
+        File file = new File(fileName);
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String[] stArr;
+        String st;
+        while (true) {
+            try {
+                st = br.readLine();
+                if (!((st) != null)) break;
+                st = (st.replaceAll("[^a-zA-Z0-9\\\\'\\\\ \\\\-]", ""));
+                stArr = st.split(" ");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+           // Hash.printArr(stArr);
+            hashTable.insertArray(stArr);
         }
     }
 }

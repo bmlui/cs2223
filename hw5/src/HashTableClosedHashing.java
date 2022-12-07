@@ -1,7 +1,8 @@
 import java.util.Arrays;
 
 public class HashTableClosedHashing {
-    private String[] array;
+    public String[] array;
+
    private int size;
     private int itemsInArray = 0;
     Hash h;
@@ -13,9 +14,9 @@ public class HashTableClosedHashing {
      */
     public HashTableClosedHashing(int size) {
         this.size = size;
-        array = new String[size];
-        Arrays.fill(array, "-1");
-        this.h = new Hash(123, 293);
+        this.array = new String[size];
+        Arrays.fill(this.array, "-1");
+        this.h = new Hash(123, size);
     }
 
     /**
@@ -26,8 +27,8 @@ public class HashTableClosedHashing {
      */
     public HashTableClosedHashing(int size, int C) {
         this.size = size;
-        array = new String[size];
-        Arrays.fill(array, "-1");
+        this.array = new String[size];
+        Arrays.fill(this.array, "-1");
         this.h = new Hash(C, size);
     }
 
@@ -48,11 +49,12 @@ public class HashTableClosedHashing {
      * @param input The string to insert.
      */
     public void insert(String input) {
-        if (this.getKey(input) == -1) {
-            int index = h.hash(input);
+        if (input.equals(null)  | input.equals("")) { return;
+        } else if (this.getKey(input) == -1)  { // checks for duplicates
+            int index = h.hash(input); // gets the starting index of the string
             int counter = 0;
-            while (array[index] != "-1" && counter <= size) {
-                System.out.println("Collision at index " + index + " for " + input);
+            while (array[index] != "-1" && counter < size) {
+               // System.out.println("Collision at index " + index + " for " + input);
                 index++;
                 index %= size;
                 counter++;
@@ -60,7 +62,7 @@ public class HashTableClosedHashing {
             if (counter >= size) {
                 System.out.println("No more space in the array!");
             } else {
-                System.out.println("Inserted " + input + " at index " + index);
+              //  System.out.println("Inserted " + input + " at index " + index);
                 array[index] = input;
                 itemsInArray++;
             }
@@ -120,12 +122,12 @@ public class HashTableClosedHashing {
         int[] longest = new int[3];
         int[] current = new int[3];
         int totalCount = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             int counter = 0;
-            if (array[i] == "-1") {
+            if (this.array[i] == "-1") {
                 current[0] = i;
                 current[1] = i;
-                while (array[i] == "-1" && counter <= size) {
+                while (this.array[i] == "-1" && counter <= this.size) {
                     current[1] = i;
                     counter++;
                     current[2] = counter;
@@ -133,11 +135,13 @@ public class HashTableClosedHashing {
                     i %= this.size;
                 }
                 if (current[2] > longest[2]) {
-                    longest = current;
+                    for (int j = 0; j < 3; j++) {
+                        longest[j] = current[j];
+                    }
                 }
             }
             totalCount += counter;
-            if (totalCount >= size) {
+            if (totalCount > this.size) {
                 return longest;
             }
         }
@@ -153,12 +157,12 @@ public class HashTableClosedHashing {
         int[] longest = new int[3];
         int[] current = new int[3];
         int totalCount = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             int counter = 0;
-            if (array[i] != "-1") {
+            if (this.array[i] != "-1") {
                 current[0] = i;
                 current[1] = i;
-                while (array[i] != "-1" && counter <= size) {
+                while (this.array[i] != "-1" && counter <= this.size) {
                     current[1] = i;
                     counter++;
                     current[2] = counter;
@@ -166,15 +170,53 @@ public class HashTableClosedHashing {
                     i %= this.size;
                 }
                 if (current[2] > longest[2]) {
-                    longest = current;
+                    for (int j = 0; j < 3; j++) {
+                        longest[j] = current[j];
+                    }
                 }
             }
             totalCount += counter;
-            if (totalCount >= size) {
+            if (totalCount > this.size) {
                 return longest;
             }
         }
         return longest;
     }
+
+    /**
+     * Gets the string of the hash that is farthest from the key for the hash table
+     * @return a String array with the string (index 0) and the key (index 1) and the distance from hash (index 2)
+     */
+    public String[] farthestFromHash() {
+        String[] farthest = new String[3];
+        int max = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != "-1") {
+                int distance = Math.abs(i - h.hash(array[i]));
+                if (distance > max) {
+                    max = distance;
+                    farthest[0] = array[i];
+                    farthest[1] = Integer.toString(i);
+                    farthest[2] = Integer.toString(distance);
+                }
+            }
+        }
+        return farthest;
+    }
+
+    /**
+     * Prints hash table with key/index, value, and hash value
+     */
+    public void print() {
+        System.out.println("Key | Value | Hash");
+        for (int i = 0; i < array.length; i++) {
+            String hashval = "";
+            if (array[i] != "-1") {
+                 hashval = Integer.toString(h.hash(array[i]));
+            }
+            System.out.println(i + "   " + array[i] + " " + hashval );
+        }
+    }
+
 
 }
