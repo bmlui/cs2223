@@ -25,7 +25,7 @@ public class q4 {
         System.out.println();
         System.out.println("c) The total value/number of gems is " + path.get(0));
         System.out.println("d) The ending square/number of the vault is " + path.get(1));
-
+        Gaussian.printMatrix(a1);
     }
 
     public static double[][] maxArr(double[][] A) {
@@ -35,7 +35,7 @@ public class q4 {
 
         for (int i = 1; i < n; i++) {
             total = -1;
-            for (int j = 0; j < n - 1; j++) {
+            for (int j = 0; j < n ; j++) {
                 double middleSum = a[i][j] + a[i - 1][j];
                 if (j == 0) { //first row
                     double rightSum = a[i][j] + a[i - 1][j + 1];
