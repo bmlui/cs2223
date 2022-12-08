@@ -1,9 +1,9 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class HashTableClosedHashing {
-    public String[] array;
-
-   private int size;
+    private String[] array;
+    private int size;
     private int itemsInArray = 0;
     Hash h;
 
@@ -49,12 +49,13 @@ public class HashTableClosedHashing {
      * @param input The string to insert.
      */
     public void insert(String input) {
-        if (input.equals(null)  | input.equals("")) { return;
-        } else if (this.getKey(input) == -1)  { // checks for duplicates
+        if (input.equals(null) | input.equals("")) {
+            return;
+        } else if (this.getKey(input) == -1) { // checks for duplicates
             int index = h.hash(input); // gets the starting index of the string
             int counter = 0;
             while (array[index] != "-1" && counter < size) {
-               // System.out.println("Collision at index " + index + " for " + input);
+                // System.out.println("Collision at index " + index + " for " + input);
                 index++;
                 index %= size;
                 counter++;
@@ -62,7 +63,7 @@ public class HashTableClosedHashing {
             if (counter >= size) {
                 System.out.println("No more space in the array!");
             } else {
-              //  System.out.println("Inserted " + input + " at index " + index);
+                //  System.out.println("Inserted " + input + " at index " + index);
                 array[index] = input;
                 itemsInArray++;
             }
@@ -109,12 +110,18 @@ public class HashTableClosedHashing {
         return itemsInArray;
     }
 
+    /**
+     * Gets the size of the hash table.
+     *
+     * @return The size of the hash table.
+     */
     public int getSize() {
         return size;
     }
 
     /**
      * Gets the longest empty area of the hashtable
+     *
      * @return an int array with the start (index 0) and end (index 1) of the longest empty area,
      * and the length of the area (index 2)
      */
@@ -150,6 +157,7 @@ public class HashTableClosedHashing {
 
     /**
      * Gets the longest cluster in the hash table
+     *
      * @return an int array with the start (index 0) and end (index 1) of the longest cluster,
      * and length of the cluster (index 2)
      */
@@ -185,6 +193,7 @@ public class HashTableClosedHashing {
 
     /**
      * Gets the string of the hash that is farthest from the key for the hash table
+     *
      * @return a String array with the string (index 0) and the key (index 1) and the distance from hash (index 2)
      */
     public String[] farthestFromHash() {
@@ -205,6 +214,30 @@ public class HashTableClosedHashing {
     }
 
     /**
+     * @return
+     */
+    public int[] mostCommonHash() {
+        int[] mostCommon = new int[2];
+        int[] hashCount = new int[this.size];
+        for (int i = 0; i < this.size; i++) {
+            if (this.array[i] != "-1") {
+                int hash = h.hash(this.array[i]);
+                hashCount[hash]++;
+            }
+        }
+        for (int i = 0; i < hashCount.length; i++) {
+            if (hashCount[i] != 0) {
+                if (hashCount[i] > mostCommon[1]) {
+                    mostCommon[0] = i;
+                    mostCommon[1] = (hashCount[i]);
+                }
+            }
+        }
+        return mostCommon;
+
+    }
+
+    /**
      * Prints hash table with key/index, value, and hash value
      */
     public void print() {
@@ -212,11 +245,14 @@ public class HashTableClosedHashing {
         for (int i = 0; i < array.length; i++) {
             String hashval = "";
             if (array[i] != "-1") {
-                 hashval = Integer.toString(h.hash(array[i]));
+                hashval = Integer.toString(h.hash(array[i]));
             }
-            System.out.println(i + "   " + array[i] + " " + hashval );
+            System.out.println(i + "   " + array[i] + " " + hashval);
         }
     }
 
 
+    public double getLoadFactor() {
+        return ((double)this.getItemsInArray()/(double)this.getSize());
+    }
 }

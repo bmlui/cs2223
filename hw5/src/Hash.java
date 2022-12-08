@@ -55,6 +55,11 @@ private int m;
         }
     }
 
+    /**
+     * Takes in a text file and hashtable and inserts the words into the hashtable.
+     * @param fileName The path of the file to read.
+     * @param hashTable The hashtable to insert the words into.
+     */
     public static void fileHash(String fileName, HashTableClosedHashing hashTable) {
         File file = new File(fileName);
         BufferedReader br = null;
