@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.LinkedList;
 
 public class Hash {
 private int C;
@@ -63,6 +64,7 @@ private int m;
     public static void fileHash(String fileName, HashTableClosedHashing hashTable) {
         File file = new File(fileName);
         BufferedReader br = null;
+        LinkedList<String> words = new LinkedList<String>();
         try {
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
@@ -80,7 +82,16 @@ private int m;
                 throw new RuntimeException(e);
             }
            // Hash.printArr(stArr);
-            hashTable.insertArray(stArr);
+            for (int i = 0; i< stArr.length; i++) {
+                if (stArr[i].length() > 0) {
+                    words.addLast(stArr[i]);
+                }
+            }
+        }
+        while (words.size() > 0) {
+            hashTable.insert(words.removeFirst());
         }
     }
+
+
 }

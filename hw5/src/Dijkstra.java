@@ -1,8 +1,15 @@
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Dijkstra {
 
+    /**
+     *
+     * @param graphOrig
+     * @param startingNode
+     * @return
+     */
     public static LinkedList<Integer>[] shortestDistancesList(int[][] graphOrig, int startingNode) {
         int graphSize = graphOrig[0][0];
         int[][] graph = new int[graphSize][graphSize];
@@ -43,6 +50,13 @@ public class Dijkstra {
         return distances;
     }
 
+    /**
+     *
+     * @param graphOrig
+     * @param startingNode
+     * @param endingNode
+     * @return
+     */
     public static LinkedList<Integer> shortestDistance(int[][] graphOrig, int startingNode, int endingNode) {
         LinkedList<Integer>[] list =  shortestDistancesList(graphOrig, startingNode);
         System.out.print("Shortest path from " + startingNode + " to " + endingNode + ": ");
@@ -54,6 +68,48 @@ public class Dijkstra {
         System.out.println("Length of the shortest path: " + list[endingNode].get(0));
 
         return list[endingNode];
+    }
+
+    public static int[][] read(String filename) {
+        File file = new File(filename);
+        BufferedReader br = null;
+        int[][] graph = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String[] stArr;
+        String st;
+        int count = 0;
+        while (true) {
+            try {
+                st = br.readLine();
+                if (!((st) != null)) break;
+                st = (st.replaceAll("[^0-9\\\\\\\\ ]", ""));
+                stArr = st.split(" ");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            // Hash.printArr(stArr);
+            for (int i = 0; i< stArr.length; i++) {
+                if (count == 0) {
+                    graph = new int[Integer.parseInt(stArr[i])+1][Integer.parseInt(stArr[i])];
+                }
+                graph[count][i] = Integer.parseInt(stArr[i]);
+
+            }
+            count++;
+        }
+        return graph;
+    }
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
 }
