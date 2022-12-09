@@ -70,6 +70,11 @@ public class Dijkstra {
         return list[endingNode];
     }
 
+    /**
+     *
+     * @param filename
+     * @return
+     */
     public static int[][] read(String filename) {
         File file = new File(filename);
         BufferedReader br = null;
@@ -86,7 +91,7 @@ public class Dijkstra {
             try {
                 st = br.readLine();
                 if (!((st) != null)) break;
-                st = (st.replaceAll("[^0-9\\\\\\\\ ]", ""));
+                st = (st.replaceAll("[^0-9\\ \\.]", ""));
                 stArr = st.split(" ");
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -103,6 +108,11 @@ public class Dijkstra {
         }
         return graph;
     }
+
+    /**
+     *
+     * @param matrix
+     */
     public static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {

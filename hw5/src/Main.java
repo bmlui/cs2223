@@ -1,6 +1,3 @@
-import java.io.*;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         //Question 1 & 2
@@ -9,11 +6,20 @@ public class Main {
         HashTableClosedHashing hashTable = new HashTableClosedHashing(293);
         Hash.fileHash("/Users/blui/Documents/Git/cs2223/hw5/src/EdgarAllanPoeBellsB2022groomed.txt", hashTable);
         hashTable.print();
-          /* Extra testing stuff
-        HashTableClosedHashing hashTableRaven = new HashTableClosedHashing(1000);
+          // Extra testing stuff
+        /*HashTableClosedHashing hashTableRaven = new HashTableClosedHashing(1000);
         Hash.fileHash("/Users/blui/Documents/Git/cs2223/hw5/src/RavenD2020.txt", hashTableRaven);
-        hashTableRaven.print(); */
-
+        hashTableRaven.print();
+        System.out.println("3a) Items in the array/non-empty addresses: " + hashTableRaven.getItemsInArray() + ", load factor: " + hashTableRaven.getLoadFactor());
+        int[] longestEmptyArea = hashTableRaven.longestEmptyArea();
+        System.out.println("3b) Longest empty area: " + longestEmptyArea[0] + " to " + longestEmptyArea[1] + " of length " + longestEmptyArea[2]);
+        int[] longestCluster = (hashTableRaven.longestCluster());
+        System.out.println("3c) Longest cluster: " + longestCluster[0] + " to " + longestCluster[1] + " of length " + longestCluster[2]);
+        int[] mostCommonHash = hashTableRaven.mostCommonHash();
+        System.out.println("3d) Most common hash: " + mostCommonHash[0] + " with " + mostCommonHash[1] + " items");
+        String[] farthestFromHash = (hashTableRaven.farthestFromHash());
+        System.out.println("3e) Farthest from hash: " + farthestFromHash[0] + " at " + farthestFromHash[1] + " with distance/difference " + farthestFromHash[2]);
+        System.out.println();*/
 
         // Question 3
         System.out.println("3a) Items in the array/non-empty addresses: " + hashTable.getItemsInArray() + ", load factor: " + hashTable.getLoadFactor());
@@ -26,6 +32,7 @@ public class Main {
         String[] farthestFromHash = (hashTable.farthestFromHash());
         System.out.println("3e) Farthest from hash: " + farthestFromHash[0] + " at " + farthestFromHash[1] + " with distance/difference " + farthestFromHash[2]);
         System.out.println();
+
         // Question 4
         /*int[][] dikjstraMatrix = {{10},
                 {0, 53, 10, 12, 0, 0, 0, 0, 0, 0},

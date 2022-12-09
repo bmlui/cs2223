@@ -200,8 +200,15 @@ public class HashTableClosedHashing {
         String[] farthest = new String[3];
         int max = 0;
         for (int i = 0; i < array.length; i++) {
+            int hash = h.hash(array[i]);
             if (array[i] != "-1") {
-                int distance = Math.abs(i - h.hash(array[i]));
+                int distance = 0;
+                if (hash > i) {
+                    distance = this.size - hash + i;
+                } else if (hash < i) {
+                    distance = Math.abs(hash - i);
+                }
+
                 if (distance > max) {
                     max = distance;
                     farthest[0] = array[i];

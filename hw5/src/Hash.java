@@ -76,7 +76,7 @@ private int m;
             try {
                 st = br.readLine();
                 if (!((st) != null)) break;
-                st = (st.replaceAll("[^a-zA-Z0-9\\\\'\\\\ \\\\-]", ""));
+                st = (st.replaceAll("[^a-zA-Z0-9\\\\'\\\\ \\-]", ""));
                 stArr = st.split(" ");
             } catch (IOException e) {
                 throw new RuntimeException(e);
