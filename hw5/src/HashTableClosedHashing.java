@@ -67,7 +67,6 @@ public class HashTableClosedHashing {
                 array[index] = input;
                 itemsInArray++;
             }
-
         }
     }
 

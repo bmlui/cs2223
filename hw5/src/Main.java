@@ -4,7 +4,7 @@ public class Main {
         Hash hash = new Hash(123, 293);
 
         HashTableClosedHashing hashTable = new HashTableClosedHashing(293);
-        Hash.fileHash("/Users/blui/Documents/Git/cs2223/hw5/src/EdgarAllanPoeBellsB2022groomed.txt", hashTable);
+        Hash.fileHash("src/EdgarAllanPoeBellsB2022groomed.txt", hashTable);
         hashTable.print();
           // Extra testing stuff
         /*HashTableClosedHashing hashTableRaven = new HashTableClosedHashing(1000);
@@ -48,7 +48,7 @@ public class Main {
         Dijkstra.shortestDistance(dikjstraMatrix, 0, 4); // without file read
         Dijkstra.shortestDistance(dikjstraMatrix, 4, 9);
         Dijkstra.shortestDistance(dikjstraMatrix, 0, 9);*/
-        int[][] fileDikjstraMatrix = Dijkstra.read("/Users/blui/Documents/Git/cs2223/hw5/src/dijkstraData.txt");
+        int[][] fileDikjstraMatrix = Dijkstra.read("src/dijkstraData.txt");
         //  Dijkstra.printMatrix(fileDikjstraMatrix);
         Dijkstra.shortestDistance(fileDikjstraMatrix, 0, 4); // with file read
         Dijkstra.shortestDistance(fileDikjstraMatrix, 4, 9);
