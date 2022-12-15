@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Kween {
 
     public static boolean isLegalPosition(int[] boardOrig, int n) {
@@ -49,27 +51,54 @@ public class Kween {
         return true;
     }
 
-    public static int[] nextLegalPosition(int[] boardOrig, int n) {
-        int[] returnBoard = new int[n];
+    private static boolean boardFull(int[] boardOrig, int n) {
         for (int i = 0; i < n; i++) {
-            if (boardOrig[i] > 0) {
-                returnBoard[i] = boardOrig[i];
-                if (!isLegalPosition(returnBoard, n, i)) {
+            if (boardOrig[i] == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int[] nextLegalPosition(int[] boardOrig, int n) {
+        // checks if board is full and legal
+        if (isLegalPosition(boardOrig, n, n-1) && boardFull(boardOrig, n)) {
+            if (boardOrig[n - 1] == n) {
+                boardOrig[n - 1] = 0;
+                boardOrig[n - 2]++;
+            } else {
+                boardOrig[n - 1]++;
+            }
+        }
+
+        int[] returnBoard = new int[n]; //initalizes returnboard
+        for (int i = 0; i < n; i++) {
+            boolean isLegal = isLegalPosition(boardOrig, n, i);
+            if (boardOrig[i] > 0 && isLegal) {
+                returnBoard[i] = boardOrig[i];  // sets returnboard to boardOrig if legal
+            } else {
+                if (boardOrig[0] > n) {  // if backtracking gets to last line of first row, we know it's the end
+                    for (int j = 0; j < n; j++) {
+                        returnBoard[j] = 0;  // sets returnboard to 0
+                    }
+                    return returnBoard; // returns 0 board
+                }
+                if (boardOrig[i] >= n) { // if the current row is full, backtrack
                     returnBoard[i] = 0;
                     returnBoard[i - 1]++;
                     return Kween.nextLegalPosition(returnBoard, n);
+                } else {  // if the current row is not full, increment
+                    returnBoard[i] = boardOrig[i] + 1;
                 }
-            } else {
-                for (int j = 1; j <= n; j++) {
+                for (int j = returnBoard[i]; j <= n; j++) {
                     returnBoard[i] = j;
                     if (isLegalPosition(returnBoard, n, i)) {
                         return returnBoard;
                     }
                 }
-                returnBoard[i] = 0;
+                returnBoard[i] = 0; // if no legal position is found in current row, backtrack
                 returnBoard[i - 1]++;
                 return Kween.nextLegalPosition(returnBoard, n);
-
             }
 
         }
@@ -82,8 +111,33 @@ public class Kween {
         while (board[n - 1] == 0) {
             board = Kween.nextLegalPosition(board, n);
         }
-
         return board;
+    }
+
+    public static int arraySum(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+    public static LinkedList<int[]> nQueensAll(int n) {
+        int[] board;
+        board = nQueensFirst(n);
+        LinkedList<int[]> returnList = new LinkedList<int[]>();
+        returnList.add(board);
+
+        while (arraySum(board) != 0) {
+            board = Kween.nextLegalPosition(board, n);
+                if (boardFull(board, n)) {
+                    int[] emptyBoard = new int[n];
+                    for(int i = 0; i < n; i++) {
+                        emptyBoard[i] = board[i];
+                    }
+                    returnList.add(emptyBoard);
+                }
+        }
+        return returnList;
     }
 
     public static void printBoard(int[] boardOrig) {
