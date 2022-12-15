@@ -32,18 +32,18 @@ public class Kween {
         if (boardOrig[rowIndex] > n) {
             return false;
         }
-        for (int i = 0; i <row; i++) {
+        for (int i = 0; i < row; i++) {
             if (boardOrig[i] == 0) {
                 board[i] = -1;
             } else {
                 board[i] = boardOrig[i] - 1;
             }
         }
-        for (int i = 0; i <rowIndex; i++) {
-                if (board[rowIndex] != -1) {
-                    if (board[i] == board[rowIndex] || Math.abs(board[i] - board[rowIndex]) == rowIndex - i) {
-                        return false;
-                    }
+        for (int i = 0; i < rowIndex; i++) {
+            if (board[rowIndex] != -1) {
+                if (board[i] == board[rowIndex] || Math.abs(board[i] - board[rowIndex]) == rowIndex - i) {
+                    return false;
+                }
             }
         }
         return true;
@@ -54,6 +54,11 @@ public class Kween {
         for (int i = 0; i < n; i++) {
             if (boardOrig[i] > 0) {
                 returnBoard[i] = boardOrig[i];
+                if (!isLegalPosition(returnBoard, n, i)) {
+                    returnBoard[i] = 0;
+                    returnBoard[i - 1]++;
+                    return Kween.nextLegalPosition(returnBoard, n);
+                }
             } else {
                 for (int j = 1; j <= n; j++) {
                     returnBoard[i] = j;
@@ -61,6 +66,10 @@ public class Kween {
                         return returnBoard;
                     }
                 }
+                returnBoard[i] = 0;
+                returnBoard[i - 1]++;
+                return Kween.nextLegalPosition(returnBoard, n);
+
             }
 
         }
@@ -69,14 +78,11 @@ public class Kween {
 
     public static int[] nQueensFirst(int n) {
         int[] board = new int[n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j <= n; j++) {
-                board[i] = j;
-                if (isLegalPosition(board, n, i)) {
-                    break;
-                }
-            }
+        board[0] = 1;
+        while (board[n - 1] == 0) {
+            board = Kween.nextLegalPosition(board, n);
         }
+
         return board;
     }
 

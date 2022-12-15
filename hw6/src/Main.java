@@ -10,7 +10,9 @@ public class Main {
         Kween.printBoard(Kween.nextLegalPosition(new int[]{1,6,8, 3,7,0,0,0}, 8));
 
         //Question 3
-        Kween.printBoard(Kween.nQueensFirst(8));
+        Kween.printBoard(Kween.nQueensFirst(4));
+
+        //
     }
 
 
