@@ -1,7 +1,16 @@
 import java.util.LinkedList;
 
+/**
+ * This class contains methods that solve the n-queens problem.
+ */
 public class Kween {
 
+    /**
+     * Determines if the given position is legal.
+     * @param boardOrig The board to check.
+     * @param n The number of queens on the board.
+     * @return True if the board is legal, false otherwise.
+     */
     public static boolean isLegalPosition(int[] boardOrig, int n) {
         int[] board = new int[n];
         // augment the board with index position
@@ -27,6 +36,13 @@ public class Kween {
         return true;
     }
 
+    /**
+     * Determines if the given position is legal.
+     * @param boardOrig The board to check.
+     * @param n The number of queens on the board.
+     * @param rowIndex The row index to check.
+     * @return True if the board is legal, false otherwise.
+     */
     public static boolean isLegalPosition(int[] boardOrig, int n, int rowIndex) {
         int row = rowIndex + 1;
         int[] board = new int[row];
@@ -51,6 +67,12 @@ public class Kween {
         return true;
     }
 
+    /**
+     * Determines if the given board is full
+     * @param boardOrig The board to check.
+     * @param n The number of queens on the board.
+     * @return True if the board is full, false otherwise.
+     */
     private static boolean boardFull(int[] boardOrig, int n) {
         for (int i = 0; i < n; i++) {
             if (boardOrig[i] == 0) {
@@ -60,6 +82,12 @@ public class Kween {
         return true;
     }
 
+    /**
+     * Determines the next legal position for the given board.
+     * @param boardOrig The board to check.
+     * @param n The number of queens on the board.
+     * @return The board of with the next legal position.
+     */
     public static int[] nextLegalPosition(int[] boardOrig, int n) {
         // checks if board is full and legal
         if (isLegalPosition(boardOrig, n, n-1) && boardFull(boardOrig, n)) {
@@ -105,6 +133,11 @@ public class Kween {
         return returnBoard;
     }
 
+    /**
+     * Determines the first solution to the n-queens problem.
+     * @param n The number of queens on the board/ size of the baord.
+     * @return The first solution to the n-queens problem.
+     */
     public static int[] nQueensFirst(int n) {
         int[] board = new int[n];
         board[0] = 1;
@@ -114,6 +147,11 @@ public class Kween {
         return board;
     }
 
+    /**
+     * Sums all numbers in the given int[] array
+     * @param array The array to sum.
+     * @return The sum of all numbers in the array.
+     */
     public static int arraySum(int[] array) {
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
@@ -121,6 +159,12 @@ public class Kween {
         }
         return sum;
     }
+
+    /**
+     * Determines all the solutions to the n-queens problem.
+     * @param n The number of queens on the board/ size of the baord.
+     * @return A linkedlist of arrays of all solutions to the n-queens problem.
+     */
     public static LinkedList<int[]> nQueensAll(int n) {
         int[] board;
         board = nQueensFirst(n);
@@ -140,6 +184,10 @@ public class Kween {
         return returnList;
     }
 
+    /**
+     * Prints the given chess board.
+     * @param boardOrig The board to print.
+     */
     public static void printBoard(int[] boardOrig) {
         Kween.printArray(boardOrig);
 
@@ -178,6 +226,10 @@ public class Kween {
         System.out.println();
     }
 
+    /**
+     * Prints the given array.
+     * @param array The array to print.
+     */
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");

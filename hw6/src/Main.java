@@ -18,7 +18,7 @@ public class Main {
         //Question 3
         Kween.printBoard(Kween.nQueensFirst(4));
         Kween.printBoard(Kween.nQueensFirst(8));
-        for (int i = 4; i <= 14; i++) {
+        for (int i = 4; i <= 32; i++) {
             Kween.printBoard(Kween.nQueensFirst(i));
         }
 
@@ -27,15 +27,14 @@ public class Main {
         for (int i = 0; i < list.size(); i++) {
             Kween.printBoard(list.get(i));
         }
-        for (int i = 4; i <= 14; i++) {
+        for (int i = 4; i <= 15; i++) {
             list = Kween.nQueensAll(i);
             System.out.println("There are " + list.size() + " solutions to the " + i + "-queens problem.");
         }
 
 
-
-
     }
+
 
 
 
