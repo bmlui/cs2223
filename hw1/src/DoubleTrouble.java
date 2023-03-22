@@ -37,7 +37,7 @@ public class DoubleTrouble {
     /**
      * Prints out the current game board, number of stones in each pile
      */
-    private void printBoard() {
+    public void printBoard() {
         System.out.println("1: green count: " + green.getNumStones());
         System.out.println("2: yellow count: " + yellow.getNumStones());
         System.out.println("3: orange count: " + orange.getNumStones());
